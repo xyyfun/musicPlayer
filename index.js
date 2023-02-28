@@ -87,14 +87,15 @@ function move() {
 	let id = index();
 	let y = id * liHight - rootHight / 2;
 	if (id < 0) {
-		id = 0;
+		doms.ul.style.transform = `translateY(${-y}px)`;
+	} else {
+		doms.ul.style.transform = `translateY(${-y}px)`;
+		let li = document.querySelector('.active');
+		if (li) {
+			li.classList.remove('active');
+		}
+		doms.ul.children[id].classList.add('active');
 	}
-	let li = document.querySelector('.active');
-	doms.ul.style.transform = `translateY(${-y}px)`;
-	if (li) {
-		li.classList.remove('active');
-	}
-	doms.ul.children[id].classList.add('active');
 }
 
 doms.audio.addEventListener('timeupdate', move);
